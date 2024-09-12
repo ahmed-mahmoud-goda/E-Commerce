@@ -1,0 +1,27 @@
+<div class="w-10/12 mx-auto flex mt-9 flex-wrap">
+    @for (category of categories; track $index) {
+<div class="w-full lg:w-1/3  p-2">
+    <div class="product flex flex-col justify-between" (click)="showSpecCategory(category._id)">
+        <div class="secondary-img">
+            <img [src]="category.image" class="w-full" alt="">
+        </div>
+        <div>
+            <h2 class="text-main text-2xl font-extrabold text-center my-4">{{category.name}}</h2>
+        </div>
+    </div>
+</div>
+    }
+</div>
+
+<div>
+    <h2 class="text-main text-2xl font-extrabold text-center my-4" [class.hidden]="!showSub">{{subcategoryname}}'s Subcategories</h2>
+</div>
+<div class="w-10/12 mx-auto flex flex-wrap">
+    @for (subcategory of subCategories; track $index) {
+<div class="w-full lg:w-1/3  p-2">
+    <div class="product flex flex-col justify-between">
+            <h2 class="text-gray-900 text-2xl  font-extrabold text-center my-4">{{subcategory.name}}</h2>
+    </div>
+</div>
+    }
+</div>

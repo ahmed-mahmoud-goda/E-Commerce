@@ -1,0 +1,31 @@
+<div class="w-3/4 mx-auto my-5">
+    <form action="" [formGroup]="checkoutForm" (ngSubmit)="checkoutApi()">
+        <div class="my-2">
+            <label for="">details</label>
+            <input type="text" formControlName="details" class="w-full">
+            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert">
+                @if (checkoutForm.get('details')?.getError('required')) {<p>Details is required</p>}
+            </div>
+        </div>
+        <div class="my-2">
+            <label for="">phone</label>
+            <input type="text" formControlName="phone" class="w-full">
+            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert">
+            @if (checkoutForm.get('phone')?.getError('required')) {<p>Phone is required</p>}
+                @else if (checkoutForm.get('phone')?.getError('pattern')) {<p>Phone is invalid</p>}
+            </div>
+        </div>
+        <div class="my-2">
+            <label for="">city</label>
+            <input type="text" formControlName="city" class="w-full">
+            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert">
+            @if (checkoutForm.get('city')?.getError('required')) {<p>City is required</p>}
+            </div>
+        </div>
+
+        <button class="btn-main w-full">Submit</button>
+    </form>
+</div>

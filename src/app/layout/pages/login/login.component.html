@@ -1,0 +1,52 @@
+<div class="w-10/12 mx-auto">
+
+    <h2 class="text-main">Register Now:</h2>
+
+    <form [formGroup]="loginForm" class="mt-6" (ngSubmit)="sendData()">
+
+        @if(errorMsg){
+        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            <p>Error: {{errorMsg}}</p>
+        </div>
+        }
+
+
+        <div class="my-3">
+            <label for="email">Email:</label>
+            <input type="email" id="email" class="w-full rounded-lg border-gray-500 mt-2" formControlName="email">
+            @if(loginForm.get('email')?.errors && loginForm.get('email')?.touched) {
+            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert">
+                @if (loginForm.get('email')?.getError('required')) {<p>email is required</p>}
+                @else if (loginForm.get('email')?.getError('email')) {<p>email is invalid</p>}
+            </div>
+            }
+        </div>
+
+        <div class="my-3">
+            <label for="password">Password:</label>
+            <input #pass type="password" id="password" class="w-full rounded-lg border-gray-500 mt-2"
+                formControlName="password">
+            <i class="fa-regular fa-eye" [class.hidden]="show" (click)="(pass.type = 'text');show = true"></i>
+
+            <i class="fa-solid fa-eye-slash" [class.hidden]="!show" (click)="(pass.type = 'password');show = false"></i>
+
+            @if(loginForm.get('password')?.errors && loginForm.get('password')?.touched) {
+            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert">
+                @if (loginForm.get('password')?.getError('required')) {<p>password is required</p>}
+                @else if (loginForm.get('password')?.getError('pattern')) {<p>password is invalid</p>}
+            </div>
+            }
+        </div>
+
+        <div class="flex justify-between items-center">
+            <a routerLink="/forgetPassword" class="text-main">Forgot Password</a>
+            <button [disabled]="loginForm.invalid" class="btn-main block ms-auto">Register
+                @if (isLogin) {
+                <i class="fa-solid fa-spin fa-spinner"></i>
+                }
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,41 @@
+<div class="w-10/12 mx-auto flex py-7">
+    <div class="w-3/4 main-img">
+
+        <owl-carousel-o [options]="customOptions">
+            <ng-template carouselSlide><img src="./assets/images/main-slider-1.jpeg" class="w-full"
+                    alt=""></ng-template>
+            <ng-template carouselSlide><img src="./assets/images/main-slider-2.jpeg" class="w-full"
+                    alt=""></ng-template>
+            <ng-template carouselSlide><img src="./assets/images/main-slider-3.jpeg" class="w-full"
+                    alt=""></ng-template>
+        </owl-carousel-o>
+
+
+    </div>
+    <div class="w-1/4 secondary-img">
+        <img src="./assets/images/main-slider-2.jpeg" class="w-full" alt="">
+        <img src="./assets/images/main-slider-3.jpeg" class="w-full" alt="">
+    </div>
+
+</div>
+
+<div class="mx-auto my-7">
+    <owl-carousel-o [options]="customOptions2">
+        @for (category of categories; track $index) {
+        <ng-template carouselSlide>
+            <div class="flex secondary-img w-full items-center flex-col">
+                <div class="w-full">
+                    <img [src]="category.image" class="w-full" [alt]="category.name">
+                </div>
+                <div>
+                    <h2 class="font-extrabold text-2xl">{{category.name}}</h2>
+                </div>
+            </div>
+        </ng-template>
+        }
+    </owl-carousel-o>
+</div>
+
+
+
+<app-products [isProduct]="false"></app-products>

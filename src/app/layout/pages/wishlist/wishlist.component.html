@@ -1,0 +1,31 @@
+<div class="w-10/12 mx-auto flex flex-wrap">
+
+<h2 class="my-9 text-main font-extrabold fa-2xl">My Wishlist</h2>
+
+    @for (product of productList; track $index) {
+        <div class="flex flex-wrap items-center my-3 border-b-2 w-full border-b-gray-200 pb-3">
+            <div class="w-2/12">
+                <img [src]="product.imageCover" class="w-full" [alt]="product.title">
+            </div>
+    
+            <div class="w-7/12">
+                <div class="mx-5">
+                <h2>{{product.title}}</h2>
+                <span>Price: {{product.price}}</span>
+                <br>
+                <i class="fa-solid fa-trash text-red-500 cursor-pointer" (click)="removeItem(product._id)"> Remove</i>
+            </div>
+            </div>
+            <div class="w-3/12 flex justify-center gap-5 items-center">
+                <button class="btn-main bg-transparent" (click)="addProduct(product._id)">Add To Cart</button>
+            </div>
+        </div>
+    }
+    @empty {
+    <div class="w-4/12">
+        <img src="./assets/images/emptycart.png" class="w-full" alt="Empty Cart">
+    </div>
+    }
+
+
+</div>
